@@ -1,4 +1,4 @@
-package me.CHANGEME.slimefunaddon;
+package me.alexzander700.sfBarrels;
 
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
@@ -13,7 +13,7 @@ import io.github.thebusybiscuit.slimefun4.api.SlimefunAddon;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.config.Config;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
 
-public class ExampleAddon extends JavaPlugin implements SlimefunAddon {
+public class sfBarrels extends JavaPlugin implements SlimefunAddon {
 
     @Override
     public void onEnable() {
@@ -28,10 +28,10 @@ public class ExampleAddon extends JavaPlugin implements SlimefunAddon {
          * 1. Creating a new Category
          * This Category will use the following ItemStack
          */
-        ItemStack itemGroupItem = new CustomItemStack(Material.DIAMOND, "&4Addon Category", "", "&a> Click to open");
+        ItemStack itemGroupItem = new CustomItemStack(Material.BARREL, "&3Better Barrels", "", "&a> Click to open");
 
         // Give your Category a unique id.
-        NamespacedKey itemGroupId = new NamespacedKey(this, "addon_category");
+        NamespacedKey itemGroupId = new NamespacedKey(this, "betterbarrels");
         ItemGroup itemGroup = new ItemGroup(itemGroupId, itemGroupItem);
 
         /*
@@ -39,7 +39,7 @@ public class ExampleAddon extends JavaPlugin implements SlimefunAddon {
          * This class has many constructors, it is very important
          * that you give each item a unique id.
          */
-        SlimefunItemStack slimefunItem = new SlimefunItemStack("COOL_DIAMOND", Material.DIAMOND, "&4Cool Diamond", "&c+20% Coolness");
+        SlimefunItemStack slimefunItem = new SlimefunItemStack("BARREL_T1", Material.BARREL, "&3Better Barrel", "&cStores 2 barrels worth of stuff, can be upgraded");
 
         /*
          * 3. Creating a Recipe
@@ -48,7 +48,7 @@ public class ExampleAddon extends JavaPlugin implements SlimefunAddon {
          * The machine in which this recipe is crafted in is specified
          * further down as the RecipeType.
          */
-        ItemStack[] recipe = { new ItemStack(Material.EMERALD), null, new ItemStack(Material.EMERALD), null, new ItemStack(Material.DIAMOND), null, new ItemStack(Material.EMERALD), null, new ItemStack(Material.EMERALD) };
+        ItemStack[] recipe = { new ItemStack(Material.OAK_LOG), new ItemStack(Material.ENDER_EYE), new ItemStack(Material.OAK_LOG), new ItemStack(Material.IRON_BLOCK), new ItemStack(Material.BARREL), new ItemStack(Material.IRON_BLOCK), new ItemStack(Material.OAK_LOG), new ItemStack(Material.OBSIDIAN), new ItemStack(Material.OAK_LOG) };
 
         /*
          * 4. Registering the Item
