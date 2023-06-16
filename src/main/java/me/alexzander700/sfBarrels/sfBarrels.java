@@ -1,14 +1,15 @@
 package me.alexzander700.sfBarrels;
 
+import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
+import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
+import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
-import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
-import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
+import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.SlimefunAddon;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.config.Config;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
@@ -24,41 +25,17 @@ public class sfBarrels extends JavaPlugin implements SlimefunAddon {
             // You could start an Auto-Updater for example
         }
 
-        /*
-         * 1. Creating a new Category
-         * This Category will use the following ItemStack
-         */
-        ItemStack itemGroupItem = new CustomItemStack(Material.BARREL, "&3Better Barrels", "", "&a> Click to open");
+        NamespacedKey categoryId = new NamespacedKey(this, "better_barrels");
+        CustomItemStack categoryItem = new CustomItemStack(Material.BARREL, "&3Better Barrels");
+        ItemGroup itemGroup = new ItemGroup(categoryId, categoryItem);
 
-        // Give your Category a unique id.
-        NamespacedKey itemGroupId = new NamespacedKey(this, "betterbarrels");
-        ItemGroup itemGroup = new ItemGroup(itemGroupId, itemGroupItem);
+        SlimefunItemStack itemStack = new SlimefunItemStack("BETTER_BARREL", Material.BARREL, "&6Better Barrel", "", "A barrel that will hold a metric ton of items.");
 
-        /*
-         * 2. Create a new SlimefunItemStack
-         * This class has many constructors, it is very important
-         * that you give each item a unique id.
-         */
-        SlimefunItemStack slimefunItem = new SlimefunItemStack("BARREL_T1", Material.BARREL, "&3Better Barrel", "&cStores 2 barrels worth of stuff, can be upgraded");
+        ItemStack[] recipe = {new ItemStack(Material.OAK_LOG), new ItemStack(Material.ENDER_EYE), new ItemStack(Material.OAK_LOG), new ItemStack(Material.IRON_BLOCK), new ItemStack(Material.BARREL), new ItemStack(Material.IRON_BLOCK), new ItemStack(Material.OAK_LOG), SlimefunItems.PLASTIC_SHEET, new ItemStack(Material.OAK_LOG)};
 
-        /*
-         * 3. Creating a Recipe
-         * The Recipe is an ItemStack Array with a length of 9.
-         * It represents a Shaped Recipe in a 3x3 crafting grid.
-         * The machine in which this recipe is crafted in is specified
-         * further down as the RecipeType.
-         */
-        ItemStack[] recipe = { new ItemStack(Material.OAK_LOG), new ItemStack(Material.ENDER_EYE), new ItemStack(Material.OAK_LOG), new ItemStack(Material.IRON_BLOCK), new ItemStack(Material.BARREL), new ItemStack(Material.IRON_BLOCK), new ItemStack(Material.OAK_LOG), new ItemStack(Material.OBSIDIAN), new ItemStack(Material.OAK_LOG) };
+        SlimefunItem sfItem = new SlimefunItem(itemGroup, itemStack, RecipeType.ENHANCED_CRAFTING_TABLE, recipe);
+        sfItem.register(this);
 
-        /*
-         * 4. Registering the Item
-         * Now you just have to register the item.
-         * RecipeType.ENHANCED_CRAFTING_TABLE refers to the machine in
-         * which this item is crafted in.
-         * Recipe Types from Slimefun itself will automatically add the recipe to that machine.
-         */
-        SlimefunItem item = new SlimefunItem(itemGroup, slimefunItem, RecipeType.ENHANCED_CRAFTING_TABLE, recipe);
-        item.register(this);
     }
 
     @Override

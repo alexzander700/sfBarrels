@@ -4,11 +4,11 @@ name: SFBarrels
 ## CHANGE this to your username.
 author: alexzander700
 
-## CHANGE this to a meaninful but short description of your plugin.
+## CHANGE this to a meaningful but short description of your plugin.
 description: A Slimefun4-Addon to help solve all storage issues
 
 ## CHANGE this to the path of the class that extends JavaPlugin.
-main: me.alexzander700.slimefunaddon.ExampleAddon
+main: me.alexzander700.sfBarrels.sfBarrels
 
 ## This value is automatically replaced by the version specified in your pom.xml file.
 ## Do not change this.
